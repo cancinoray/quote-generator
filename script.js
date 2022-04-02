@@ -6,10 +6,11 @@ const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
 
 //Loadin Spinner Shown
-function loading (){
+const loading = () => {
     loader.hidden = false;
     quoteContainer.hidden = true;
 }
+
 
 //Remove Loading Spinner Loading
 function complete() {
@@ -19,22 +20,20 @@ function complete() {
     }
 }
 
+
 // Get Quote From API
 async function getQuote(){
     loading();
     //We need to use a Proxy URL to make our API call in order to avoid a CORS error
     const proxyUrl = 'https://fathomless-plateau-97382.herokuapp.com/'; //created a proxy in heroku
-    const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
+    const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';//Forismatic API
     try{
         const response = await fetch(proxyUrl + apiUrl);
         const data = await response.json();
 
         // If Author is blank, add 'Unknown'
-        if (data.quoteAuthor === ''){
-            authorText.innerText = 'Unknown';
-        } else{
-            authorText.innerText = data.quoteAuthor;
-        }
+        (data.quoteAuthor === '') ? authorText.innerText = 'Unknown' : authorText.innerText = data.quoteAuthor;
+
 
         //Reduce font size for long quotes
         if (data.quoteText.length > 120){
