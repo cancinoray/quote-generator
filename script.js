@@ -25,7 +25,7 @@ function complete() {
 async function getQuote(){
     loading();
     //We need to use a Proxy URL to make our API call in order to avoid a CORS error
-    const proxyUrl = 'https://fathomless-plateau-97382.herokuapp.com/'; //created a proxy in heroku
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/corsdemo'; //created a proxy in heroku
     const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';//Forismatic API
     try{
         const response = await fetch(proxyUrl + apiUrl);
